@@ -16,6 +16,11 @@
         src="https://img.shields.io/badge/VLM_FO1-Demo-orange?logo=huggingface" 
     />
   </a>
+   <a href="https://huggingface.co/spaces/P3ngLiu/SAM3_VLM-FO1">
+    <img 
+        src="https://img.shields.io/badge/FO1+SAM3-Demo-orange?logo=huggingface" 
+    />
+  </a>
 </p>
 
 <p align="left">
@@ -30,7 +35,7 @@ For more details, check out our **[paper](https://arxiv.org/abs/2509.25916)**
 
 ## 📰 Update News
 
-- **2025-11-21** — We released a new demo that integrates **[SAM3](https://github.com/facebookresearch/sam3)** with **VLM-FO1**, enabling stronger segmentation fidelity and more reliable detection under complex, compositional label prompts. Check this section [Inference with SAM3 + VLM-FO1 Gradio Demo](#5-inference-with-sam3--vlm-fo1-gradio-demo) about how to run it. Huggingface Space will coming soon. 
+- **2025-11-21** — We released a new demo that integrates **[SAM3](https://github.com/facebookresearch/sam3)** with **VLM-FO1**, enabling stronger segmentation fidelity and more reliable detection under complex, compositional label prompts. Check this section [Inference with SAM3 + VLM-FO1 Gradio Demo](#5-inference-with-sam3--vlm-fo1-gradio-demo) about how to run it. Or try the [huggingface demo](https://huggingface.co/spaces/P3ngLiu/SAM3_VLM-FO1)
 
 
 <p align="center">
