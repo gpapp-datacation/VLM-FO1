@@ -204,7 +204,7 @@ def process(image, example_image, prompt, threshold):
 
     ans, ans_bbox_json, ans_bbox_list = multimodal_model(image, bboxes, prompt)
 
-    image_with_opn = draw_bboxes(image, bboxes)
+    image_with_detection = draw_bboxes(image, bboxes)
 
     annotated_bboxes = []
     if len(ans_bbox_json) > 0:
@@ -214,11 +214,7 @@ def process(image, example_image, prompt, threshold):
             )
     annotated_image = (image, annotated_bboxes)
 
-    return annotated_image, image_with_opn, ans, ans_bbox_json
-
-
-def show_label_input(choice):
-    return gr.update(visible=(choice == "OmDet"))
+    return annotated_image, image_with_detection, ans, ans_bbox_json
 
 
 def update_btn(is_processing):
@@ -251,6 +247,8 @@ def launch_demo():
         **Step 4: Generate Results**
         - Click the **Submit** button to process your request
         - View the detection results and model outputs below
+        
+        🔗 [GitHub Repository](https://github.com/om-ai-lab/VLM-FO1)
         """)
         
         with gr.Row():
@@ -337,7 +335,7 @@ def launch_demo():
 
             with gr.Column():
                 with gr.Accordion("Detection Result", open=True):
-                    image_output_opn = gr.Image(label="Detection Result", height=200)
+                    image_with_detection = gr.Image(label="Detection Result", height=200)
 
                 image_output = gr.AnnotatedImage(label="VLM-FO1 Result", height=400)
 
@@ -352,7 +350,7 @@ def launch_demo():
         ).then(
             process,
             inputs=[img_input_draw, hidden_image_box, prompt_input, threshold_input],
-            outputs=[image_output, image_output_opn, result_output, ans_bbox_json],
+            outputs=[image_output, image_with_detection, result_output, ans_bbox_json],
             queue=True
         ).then(
             update_btn, 

@@ -529,7 +529,7 @@ def make_message_context(tokenizer, message, chat_format="chatml"):
                     context_tokens = tokenizer_image_token(inp, tokenizer, image_token_index=IMAGE_TOKEN_INDEX)
         return inp, context_tokens, image_urls, bbox_list
 
-def prepare_inputs(model_name, model, image_processors, tokenizer, messages, device="cuda", max_tokens=512, top_p=1.0, temperature=0.0, do_sample=False):
+def prepare_inputs(model_name, model, image_processors, tokenizer, messages, device="cuda", max_tokens=512, top_p=1.0, temperature=0.0, do_sample=False, image_size=None):
     """
     Fully prepares keyword arguments for model.generate (and compatible API) from messages and model specs.
 
@@ -587,9 +587,11 @@ def prepare_inputs(model_name, model, image_processors, tokenizer, messages, dev
     if image_urls:
         # Load images, resize them, and update bbox_list downstream
         images = [load_image(i) for i in image_urls]
-        # print('original images[0].size:', images[0].size)
-        images, bbox_list = resize_shortest_edge_images_and_bboxes(images, bbox_list, max_size=2048)
-        # print('resized images[0].size:', images[0].size)
+        if image_size is not None:
+            images, bbox_list = resize_shortest_edge_images_and_bboxes(images, bbox_list, candidate_sizes=[image_size], max_size=2048)
+        else:
+            images, bbox_list = resize_shortest_edge_images_and_bboxes(images, bbox_list, max_size=2048)
+
     
         # When region-indexed tokens are enabled
         if getattr(model.config, 'mm_use_region_index_token', False):
@@ -614,7 +616,7 @@ def prepare_inputs(model_name, model, image_processors, tokenizer, messages, dev
     primary_images = []
     primary_image_grid_thws = []
     for im in images:
-        processed_data = primary_image_processor.preprocess(im, videos=None, return_tensors="pt")
+        processed_data = primary_image_processor.preprocess(im, return_tensors="pt")
         image_i = processed_data['pixel_values']
         image_grid_thw_i = processed_data['image_grid_thw']
         primary_images.append(image_i)

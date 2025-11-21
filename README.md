@@ -27,6 +27,12 @@ Understanding, Visual Region Reasoning, and more.
 
 For more details, check out our **[paper](https://arxiv.org/abs/2509.25916)**
 
+
+## 📰 Update News
+
+- **2025-11-21** — We released a new demo that integrates **[SAM3](https://github.com/facebookresearch/sam3)** with **VLM-FO1**, enabling stronger segmentation fidelity and more reliable detection under complex, compositional label prompts. Check this section [Inference with SAM3 + VLM-FO1 Gradio Demo](#5-inference-with-sam3--vlm-fo1-gradio-demo) about how to run it. Huggingface Space will coming soon. 
+
+
 <p align="center">
   <img src="assets/overall_results.png" alt="VLM-FO1 Overall Results" style="max-width:100%;">
 </p>
@@ -44,6 +50,8 @@ For more details, check out our **[paper](https://arxiv.org/abs/2509.25916)**
 <p align="center">
   <img src="assets/structure.png" alt="VLM-FO1 Overall Results" style="max-width:100%;">
 </p>
+
+
 
 ## 📝 ToDo
 - [X] Release Gradio demo
@@ -154,6 +162,17 @@ Run:
 ```bash
 python demo/gradio_demo.py
 ```
+
+### 5) Inference with SAM3 + VLM-FO1 Gradio Demo
+
+1. Follow the official [SAM3 setup guide](https://github.com/facebookresearch/sam3) to install sam3 and request access to the checkpoints from Hugging Face.
+2. Launch the joint demo:
+
+```bash
+python demo/gradio_demo_with_sam3.py
+```
+
+This script pipes SAM3’s text-conditioned segmentation into VLM-FO1’s complex label reasoning for more reliable detection and segmentation on compositional prompts.
 
 
 ## 📝 Task Templates
