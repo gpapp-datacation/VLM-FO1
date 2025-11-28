@@ -133,6 +133,8 @@ The visualization with predicted boxes will be saved to `demo/vlm_fo1_result.jpg
 
 ### 3) Inference with Object Detector
 
+#### Option A: Inference with UPN
+
 **Note:** Due to company policy, we are unable to release the object detector OPN referenced in our paper. Instead, we provide integration with UPN (from [ChatRex](https://github.com/IDEA-Research/ChatRex)), which offers similar functionality. You are also free to use any object detector of your choice by preparing bounding box proposals compatible with our pipeline.
 
 Before running, you need to install UPN's requirements and build the ops extension:
@@ -164,6 +166,27 @@ The script will:
 - Filter proposals by score
 - Pass top proposals to FO1 for reasoning
 - Save the visualization to `demo/vlm_fo1_result.jpg`
+
+#### Option B: Inference with SAM3
+
+We also provide integration with **[SAM3](https://github.com/facebookresearch/sam3)**, which offers high-quality open-vocabulary segmentation. This integration leverages SAM3 to generate object proposals based on text prompts, which are then refined and selected by VLM-FO1.
+
+1.  Follow the official [SAM3 setup guide](https://github.com/facebookresearch/sam3) to install `sam3` and request access to the checkpoints.
+2.  Download the SAM3 checkpoint (e.g., `sam3.pt`) and place it in `resources/sam3/`.
+
+Use `scripts/inference_with_sam3.py` to run FO1 with SAM3-generated proposals.
+
+Run:
+
+```bash
+python scripts/inference_with_sam3.py
+```
+
+The script will:
+
+- Load SAM3 and generate object proposals based on a text prompt (e.g., "the ball nearest to the bear")
+- Pass top proposals (bounding boxes) to FO1 for reasoning and filtering
+- Save the visualization to `demo/vlm_fo1_result_with_sam3.jpg`
 
 ### 4) Inference with Gradio Demo
 Run:

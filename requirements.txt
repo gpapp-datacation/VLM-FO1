@@ -9,5 +9,4 @@ ninja
 scikit-image
 decord
 scikit-learn
-scikit-image
 matplotlib
