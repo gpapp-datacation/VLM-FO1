@@ -35,7 +35,9 @@ For more details, check out our **[paper](https://arxiv.org/abs/2509.25916)**
 
 ## 📰 Update News
 
+- **2025-11-28** — We released a new [video tracking demo](#6-inference-with-sam3--vlm-fo1-video-tracking-gradio-demo) that combines **SAM3 video tracking** with **VLM-FO1**, enabling interactive object detection and tracking across video frames with complex natural language prompts.
 - **2025-11-21** — We released a new demo that integrates **[SAM3](https://github.com/facebookresearch/sam3)** with **VLM-FO1**, enabling stronger segmentation fidelity and more reliable detection under complex, compositional label prompts. Check this section [Inference with SAM3 + VLM-FO1 Gradio Demo](#5-inference-with-sam3--vlm-fo1-gradio-demo) about how to run it. Or try the [huggingface demo](https://huggingface.co/spaces/P3ngLiu/SAM3_VLM-FO1)
+
 
 
 <p align="center">
@@ -77,6 +79,8 @@ If you are interested in our research, we welcome you to explore our other wonde
   - Inference with Provided Bounding Boxes
   - Inference with Object Detector
   - Inference with Gradio Demo
+  - Inference with SAM3 + VLM-FO1 Gradio Demo
+  - Inference with SAM3 + VLM-FO1 Video Tracking Gradio Demo
 - Task Templates
 - Evaluation
 - Citation
@@ -178,6 +182,19 @@ python demo/gradio_demo_with_sam3.py
 ```
 
 This script pipes SAM3’s text-conditioned segmentation into VLM-FO1’s complex label reasoning for more reliable detection and segmentation on compositional prompts.
+
+### 6) Inference with SAM3 + VLM-FO1 Video Tracking Gradio Demo
+
+Launch the video tracking demo:
+
+```bash
+python demo/gradio_demo_with_sam3_video_tracking.py
+```
+
+This demo extends the capabilities to video:
+1.  **Frame Selection**: Pick a keyframe from your video.
+2.  **Detection**: Use VLM-FO1 + SAM3 to identify objects with complex text prompts on the selected frame.
+3.  **Tracking**: Propagate the segmentation masks forward through the video using SAM3's tracker.
 
 
 ## 📝 Task Templates
