@@ -13,7 +13,7 @@ dependencies = [
     "scikit-image",
     "decord2",  # aarch64-compatible replacement for decord
     "safetensors",
-    "flash-attn>=2.0.0",
+    "flash-attn @ https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3/flash_attn-2.8.3+cu12torch2.9cxx11abiTRUE-cp312-cp312-linux_aarch64.whl",
 ]
 
 [build-system]
