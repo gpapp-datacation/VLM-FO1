@@ -205,7 +205,7 @@ class Qwen2_5_VlVisionTower(nn.Module):
         Actually load Qwen2.5 Vision Tower backbone and processor.
         Sets up the image tower and patch feed pipeline.
         """
-        self.image_tower = Qwen2_5_VisionTransformerPretrainedModel._from_config(self.cfg_only, attn_implementation="flash_attention_2", torch_dtype=torch.bfloat16)
+        self.image_tower = Qwen2_5_VisionTransformerPretrainedModel._from_config(self.cfg_only, attn_implementation="sdpa", torch_dtype=torch.bfloat16)
         # print(f'Qwen2_5_VlVisionTower loading_info: {loading_info}')
 
         if model_path is not None:
