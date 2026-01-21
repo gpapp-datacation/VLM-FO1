@@ -41,7 +41,7 @@ def load_pretrained_model(model_path, load_8bit=False, load_4bit=False, device="
                 model_path,
                 low_cpu_mem_usage=True,
                 output_loading_info=True,
-                attn_implementation="flash_attention_2",
+                attn_implementation="sdpa",  # Use PyTorch's native scaled dot product attention
                 **kwargs
             )
             # print(f'OmChatQwen25VLForCausalLM loading_info: {loading_info}')
